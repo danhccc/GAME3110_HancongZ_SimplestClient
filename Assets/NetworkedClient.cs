@@ -116,6 +116,8 @@ public class NetworkedClient : MonoBehaviour
         NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, msg.Length * sizeof(char), out error);
     }
 
+    /**********wehadfharewyuERFsdgf***************/
+
     private void ProcessRecievedMsg(string msg, int id)
     {
         Debug.Log("msg recieved = " + msg + ".  connection id = " + id);
@@ -134,7 +136,7 @@ public class NetworkedClient : MonoBehaviour
 
         else if (signifier == ServerToClientSignifiers.GameSessionStarted)
         {
-            gameSystemManager.GetComponent<GameSystemManager>().ChangeGameState(GameStates.PlayerTicTacToe);
+            gameSystemManager.GetComponent<GameSystemManager>().ChangeGameState(GameStates.PlayTicTacToe);
         }
 
         else if (signifier == ServerToClientSignifiers.OpponentTicTacToePlay)
@@ -144,6 +146,8 @@ public class NetworkedClient : MonoBehaviour
             Debug.Log("our next action item no longer beckons!");
         }
     }
+
+    /************asfASREGHAEHASTHJASE************/
 
     public bool IsConnected()
     {

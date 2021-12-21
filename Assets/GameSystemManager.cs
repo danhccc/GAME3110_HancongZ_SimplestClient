@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class GameSystemManager : MonoBehaviour
 {
 
-
+    // Login system
     GameObject inputFieldUserName, inputFieldPassword, buttonSubmit, toggleLogin, toggleCreate;
-
     GameObject infoStuff1, infoStuff2;
 
     GameObject networkClient;
 
-    GameObject findGameSessionButton, placeHolderGameButton;
+    // Tic Tac Toe System
+    GameObject findGameSessionButton, placeHolderGameButton, ticTacToe_UI;
 
     // Start is called before the first frame update
     void Start()
@@ -34,16 +34,20 @@ public class GameSystemManager : MonoBehaviour
                 toggleLogin = go;
             else if (go.name == "ToggleCreate")
                 toggleCreate = go;
-            else if (go.name == "NetworkedClient")
-                networkClient = go;
-            else if (go.name == "FindGameSessionButton")
-                findGameSessionButton = go;
-            else if (go.name == "PlaceHolderGameButton")
-                placeHolderGameButton = go;
             else if (go.name == "InfoText1")
                 infoStuff1 = go;
             else if (go.name == "InfoText2")
                 infoStuff2 = go;
+
+            else if (go.name == "NetworkedClient")
+                networkClient = go;
+
+            else if (go.name == "FindGameSessionButton")
+                findGameSessionButton = go;
+            else if (go.name == "PlaceHolderGameButton")
+                placeHolderGameButton = go;
+            else if (go.name == "TicTacToe")
+                ticTacToe_UI = go;
 
         }
 
@@ -60,14 +64,14 @@ public class GameSystemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A))
-        //    ChangeGameState(GameStates.Login);
-        //if (Input.GetKeyDown(KeyCode.S))
-        //    ChangeGameState(GameStates.MainMenu);
-        //if (Input.GetKeyDown(KeyCode.D))
-        //    ChangeGameState(GameStates.WaitingForMatch);
-        //if (Input.GetKeyDown(KeyCode.F))
-        //    ChangeGameState(GameStates.PlayerTicTacToe);
+        if (Input.GetKeyDown(KeyCode.A))
+            ChangeGameState(GameStates.Login);
+        if (Input.GetKeyDown(KeyCode.S))
+            ChangeGameState(GameStates.MainMenu);
+        if (Input.GetKeyDown(KeyCode.D))
+            ChangeGameState(GameStates.WaitingForMatch);
+        if (Input.GetKeyDown(KeyCode.F))
+            ChangeGameState(GameStates.PlayTicTacToe);
     }
 
     private void SubmitButtonPressed()
@@ -118,10 +122,12 @@ public class GameSystemManager : MonoBehaviour
         buttonSubmit.SetActive(false);
         toggleLogin.SetActive(false);
         toggleCreate.SetActive(false);
-        findGameSessionButton.SetActive(false);
-        placeHolderGameButton.SetActive(false);
         infoStuff1.SetActive(false);
         infoStuff2.SetActive(false);
+
+        findGameSessionButton.SetActive(false);
+        placeHolderGameButton.SetActive(false);
+        ticTacToe_UI.SetActive(false);
 
         // Then load select state
         if (newState == GameStates.Login)
@@ -142,9 +148,11 @@ public class GameSystemManager : MonoBehaviour
         {
 
         }
-        else if (newState == GameStates.PlayerTicTacToe)
+        else if (newState == GameStates.PlayTicTacToe)
         {
-            placeHolderGameButton.SetActive(true);
+            //placeHolderGameButton.SetActive(true);
+            ticTacToe_UI.SetActive(true);
+
         }
 
 
@@ -159,5 +167,5 @@ public class GameSystemManager : MonoBehaviour
         public const int Login = 1;
         public const int MainMenu = 2;
         public const int WaitingForMatch = 3;
-        public const int PlayerTicTacToe = 4;
+        public const int PlayTicTacToe = 4;
     }
